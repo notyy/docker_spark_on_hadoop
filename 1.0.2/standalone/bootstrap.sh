@@ -26,7 +26,7 @@ fi
 if [[ $1 == "-dd" ]]; then
   $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_PREFIX/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
-  $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode:7077
+  $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode:7077 -c 2 -m 400M
   while true; do sleep 1000; done
 fi
 
@@ -42,6 +42,6 @@ fi
 if [[ $1 == "-bashd" ]]; then
   $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_PREFIX/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
-  $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode:7077
+  $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode:7077 -c 2 -m 400M
   /bin/bash
 fi

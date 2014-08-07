@@ -10,4 +10,6 @@ RUN chmod 700 /etc/bootstrap.sh
 
 ENV BOOTSTRAP /etc/bootstrap.sh
 
-EXPOSE 8080
+WORKDIR /usr/local/spark
+
+EXPOSE 8080 8081 4040
