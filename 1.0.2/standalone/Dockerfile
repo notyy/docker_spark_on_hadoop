@@ -11,7 +11,8 @@ RUN chown root:root /etc/bootstrap.sh
 RUN chmod 700 /etc/bootstrap.sh
 
 ENV BOOTSTRAP /etc/bootstrap.sh
+ADD core-site.xml $HADOOP_PREFIX/etc/hadoop/core-site.xml
 
 WORKDIR /usr/local/spark
 
-EXPOSE 8080 8081 4040
+EXPOSE 8080 8081 4040 4044

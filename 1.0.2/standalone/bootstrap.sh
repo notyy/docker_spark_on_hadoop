@@ -4,6 +4,8 @@
 
 export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
 export SPARK_HOME=/usr/local/spark
+export SPARK_MASTER_IP=namenode.spark.dev.docker
+export SPARK_LOCAL_IP=namenode.spark.dev.docker
 
 $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 
@@ -26,7 +28,8 @@ fi
 if [[ $1 == "-dd" ]]; then
   $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_PREFIX/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
-  $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode:7077 -c 2 -m 1024M
+  echo "starting spark worker"
+  sudo $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode.spark.dev.docker:7077 -c 2 -m 1024M
   while true; do sleep 1000; done
 fi
 
@@ -42,6 +45,6 @@ fi
 if [[ $1 == "-bashd" ]]; then
   $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_PREFIX/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
-  $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode:7077 -c 2 -m 1024M
+  sudo $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode.spark.dev.docker:7077 -c 2 -m 1024M
   /bin/bash
 fi
