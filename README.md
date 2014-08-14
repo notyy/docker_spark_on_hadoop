@@ -36,10 +36,9 @@
 17. 查看http://localhost:4040 或 http://192.168.59.103:4040，可以看到spark-shell的监控界面，可在此处查看命令的执行情况
 18. 在spark shell终端里输入以下命令
 
-```
-val data = sc.textFile("hdfs://namenode.spark.dev.docker:9000/test").persist()
-val data.count
-```
-
+  ```
+    val data = sc.textFile("hdfs://namenode.spark.dev.docker:9000/test").persist()
+    val data.count
+  ```
 19. 应该可以看到count的输出，并且可以在4040端口的spark shell界面上看到数据在内存中占用了多少空间， persist命令在第一次调用count时才生效， 此时再运行`data.count`，应该会极快的给出结果
 20. 开始自己玩呗
