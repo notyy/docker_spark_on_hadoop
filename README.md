@@ -24,12 +24,10 @@
 12. 启动更多的datanode, 每次执行./startslave_d.sh ***数据节点的名字***即启动一个数据节点，数据节点的名字不能重复，每个节点目前配置1G内存，所以注意你的内存，一般学习测试使用一共起3个即可
 13. 验证hadoop和spark管理界面，确认数据节点都已启动并接入
 14. 在前一个终端的namenode交互终端里，当前路径应该是/usr/local/spark，hadoop的安装路径在/usr/local/hadoop，所以执行以下命令来准备一些数据：
-
 ```
 ../hadoop/bin/hdfs dfs -mkdir /test
 ../hadoop/bin/hdfs dfs -put ../hadoop/etc/hadoop/*.xml /test
 ```
-
 15. 执行`bin/spark-shell --master spark://namenode.spark.dev.docker:7077`启动spark shell
   * 观察启动过程的日志，看是否连接了worker，创建了executor
   * ***注意***执行过程中可能会看上去卡死在`register executor`的地方，此时其实已经启动完，敲回车即可进入提示符，开始输入命令
