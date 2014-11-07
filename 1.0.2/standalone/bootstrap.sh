@@ -29,7 +29,7 @@ if [[ $1 == "-dd" ]]; then
   $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_PREFIX/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
   echo "starting spark worker"
-  sudo $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode.spark.dev.docker:7077 -c 2 -m 1024M
+  sudo $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode.spark.dev.docker:7077 -c 2 -m 512M
   while true; do sleep 1000; done
 fi
 
@@ -45,6 +45,6 @@ fi
 if [[ $1 == "-bashd" ]]; then
   $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_PREFIX/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
-  sudo $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode.spark.dev.docker:7077 -c 2 -m 1024M
+  sudo $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://namenode.spark.dev.docker:7077 -c 2 -m 512M
   /bin/bash
 fi

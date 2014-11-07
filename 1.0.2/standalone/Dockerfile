@@ -7,6 +7,7 @@ RUN rm spark-1.0.2-bin-hadoop2.tgz
 RUN cd /usr/local && ln -s ./spark-1.0.2-bin-hadoop2 spark
 
 ADD bootstrap.sh /etc/bootstrap.sh
+ADD orders.csv /tmp/orders.csv
 RUN chown root:root /etc/bootstrap.sh
 RUN chmod 700 /etc/bootstrap.sh
 
